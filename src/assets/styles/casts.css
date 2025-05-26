@@ -108,24 +108,35 @@
 
 @media (max-width: 500px) {
   .casts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-  }
-  .character-card-image {
-    width: 90%;
-    max-width: 258px;
-    height: auto;
-  }
-  .character-card-name {
-    margin-left: 10%;
-    margin-right: 10%;
-    text-align: center;
   }
   .casts-logo-container {
     margin-bottom: 40px;
   }
   .casts-title-image {
-    margin-left: 0;
+    margin-left: 20px;
+    width: 76px;
     text-align: center;
+  }
+  .character-card {
+    flex-shrink: 0;
+    width: 135px;
+    height: 137px;
+    padding: 7.4px;
+    position: relative;
+  }
+  .character-card-image {
+    width: 113px;
+    height: 105px;
+    margin: 10px 0 24px 0px;
+    border-radius: 4px;
+  }
+  .character-card-name {
+    position: absolute;
+    font-size: 8px;
+    color: white;
+    bottom: -1%;
+    left: 3%;
   }
 }
