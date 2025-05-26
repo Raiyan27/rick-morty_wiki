@@ -11,7 +11,7 @@ import smallCard from "../assets/images/small-card.png";
 // import BottomGlow from "../assets/images/bottom-glow.png";
 // import star2 from "../assets/images/star2.png";
 import bubble from "../assets/images/bubble.png";
-// import bar from "../assets/images/bar.png";
+import bar from "../assets/images/bar.png";
 import play from "../assets/images/play.png";
 import Arrow from "../assets/images/left-arrow.png";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ const Home = () => {
   const [locationsData, setLocationData] = useState([]);
   const [castData, setCastData] = useState([]);
   const [episodesData, setEpisodesData] = useState([]);
-
+  const [width, setWidth] = useState(window.innerWidth);
   // State for arrow visibility
   const [showCastLeftArrow, setShowCastLeftArrow] = useState(false);
   const [showCastRightArrow, setShowCastRightArrow] = useState(false);
@@ -33,6 +33,27 @@ const Home = () => {
   const [showEpisodesRightArrow, setShowEpisodesRightArrow] = useState(false);
   const [showLocationsLeftArrow, setShowLocationsLeftArrow] = useState(false);
   const [showLocationsRightArrow, setShowLocationsRightArrow] = useState(false);
+
+  const bigCard = {
+    width: "100%",
+    height: "100%",
+    backgroundImage: `url(${castCard})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "start",
+    justifyContent: "center",
+    padding: "16px",
+    backdropFilter: "blur(3.5px)",
+  };
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+    console.log("Width:", width);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
 
   useEffect(() => {
     const fetchCasts = async () => {
@@ -167,11 +188,7 @@ const Home = () => {
   return (
     <div
       style={{
-        backgroundImage: `
-
-  url(${backgroundImage})
-`,
-
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -245,33 +262,33 @@ const Home = () => {
             {castData.map((character) => (
               <div
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  flexShrink: 0,
+                  width: "290px",
+
                   backgroundImage: `url(${castCard})`,
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
+                  backgroundSize: "contain",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "start",
                   justifyContent: "center",
-                  padding: "16px",
+                  padding: "7.5px",
                   backdropFilter: "blur(3.5px)",
+                  boxSizing: "border-box",
                 }}
               >
                 <img
                   src={character.image}
                   alt={character.name}
                   style={{
-                    marginTop: "12px",
-                    marginLeft: "5px",
-                    width: "258px",
-                    height: "230px",
+                    width: "238px",
+                    marginLeft: "22px",
+                    marginTop: "14px",
                     borderRadius: "12px",
                   }}
                 />
-                <p className="cast-card-p" style={{ marginLeft: "5px" }}>
-                  {character.name}
-                </p>
+                <p className="cast-card-p">{character.name}</p>
               </div>
             ))}
           </div>
@@ -383,6 +400,9 @@ const Home = () => {
 
       <div className="star bubble">
         <img src={bubble} alt="" />
+      </div>
+      <div className="star bar">
+        <img src={bar} alt="" />
       </div>
     </div>
   );
