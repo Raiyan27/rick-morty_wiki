@@ -4,8 +4,8 @@ import backgroundImage from "../assets/images/bg.png";
 import portalGun from "../assets/images/gun.png";
 import ricksHead from "../assets/images/portal.png";
 import logo from "../assets/images/logo.png";
-import castCard from "../assets/images/cast-card.png";
-import smallCard from "../assets/images/small-card.png";
+// import castCard from "../assets/images/cast-card.png"; // No longer needed directly for inline styles
+// import smallCard from "../assets/images/small-card.png"; // No longer needed directly for inline styles
 // import star1 from "../assets/images/star1.png";
 // import topGlow from "../assets/images/top-glow.png";
 // import BottomGlow from "../assets/images/bottom-glow.png";
@@ -34,19 +34,6 @@ const Home = () => {
   const [showLocationsLeftArrow, setShowLocationsLeftArrow] = useState(false);
   const [showLocationsRightArrow, setShowLocationsRightArrow] = useState(false);
 
-  const bigCard = {
-    width: "100%",
-    height: "100%",
-    backgroundImage: `url(${castCard})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "start",
-    justifyContent: "center",
-    padding: "16px",
-    backdropFilter: "blur(3.5px)",
-  };
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
 
@@ -116,6 +103,7 @@ const Home = () => {
       };
     }
   }, [castData]);
+
   useEffect(() => {
     const scrollElement = episodesScrollRef.current;
     const handleScrollOrResize = () => {
@@ -137,6 +125,7 @@ const Home = () => {
       };
     }
   }, [episodesData]);
+
   useEffect(() => {
     const scrollElement = locationsScrollRef.current;
     const handleScrollOrResize = () => {
@@ -168,6 +157,7 @@ const Home = () => {
       });
     }
   };
+
   const updateArrowVisibility = (scrollRef, setShowLeft, setShowRight) => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
@@ -187,14 +177,7 @@ const Home = () => {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-
-        minHeight: "100vh",
-      }}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
       className="home-container"
     >
       {/* Hero Section */}
@@ -242,7 +225,7 @@ const Home = () => {
       {/* Meet The Cast Section */}
       <section className="content-section">
         <div className="section-header">
-          <h2 style={{ marginLeft: "15px" }}>Meet The Cast</h2>
+          <h2>Meet The Cast</h2>
           <Link to="/casts" className="view-all-button">
             View All
           </Link>
@@ -250,8 +233,7 @@ const Home = () => {
         <div className="scrollable-list-container">
           {showCastLeftArrow && (
             <button
-              style={{ transform: "rotate(180deg)" }}
-              className="scroll-arrow left-arrow"
+              className="scroll-arrow left-arrow arrow-rotated"
               onClick={() => scroll(castScrollRef, -1)}
               aria-label="Scroll left"
             >
@@ -260,33 +242,11 @@ const Home = () => {
           )}
           <div className="scrollable-list" ref={castScrollRef}>
             {castData.map((character) => (
-              <div
-                style={{
-                  flexShrink: 0,
-                  width: "290px",
-
-                  backgroundImage: `url(${castCard})`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  backgroundSize: "contain",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "start",
-                  justifyContent: "center",
-                  padding: "7.5px",
-                  backdropFilter: "blur(3.5px)",
-                  boxSizing: "border-box",
-                }}
-              >
+              <div key={character.id} className="cast-card-item">
                 <img
                   src={character.image}
                   alt={character.name}
-                  style={{
-                    width: "238px",
-                    marginLeft: "22px",
-                    marginTop: "14px",
-                    borderRadius: "12px",
-                  }}
+                  className="cast-card-image"
                 />
                 <p className="cast-card-p">{character.name}</p>
               </div>
@@ -306,13 +266,12 @@ const Home = () => {
       {/* Episodes Section */}
       <section className="content-section">
         <div className="section-header">
-          <h2 style={{ marginLeft: "15px" }}>Episodes</h2>
+          <h2>Episodes</h2>
         </div>
         <div className="scrollable-list-container">
           {showEpisodesLeftArrow && (
             <button
-              style={{ marginBottom: "15px", transform: "rotate(180deg)" }}
-              className="scroll-arrow left-arrow"
+              className="scroll-arrow left-arrow arrow-rotated arrow-vertical-margin"
               onClick={() => scroll(episodesScrollRef, -1)}
               aria-label="Scroll left"
             >
@@ -321,15 +280,7 @@ const Home = () => {
           )}
           <div className="scrollable-list" ref={episodesScrollRef}>
             {episodesData.map((episode) => (
-              <div
-                style={{
-                  minWidth: "360px",
-                  minHeight: "96px",
-                  backgroundImage: `url(${smallCard})`,
-                  backgroundRepeat: "no-repeat",
-                }}
-                key={episode.id}
-              >
+              <div className="small-card-item" key={episode.id}>
                 <div className="card-container">
                   <span className="small-card-title">{episode.episode}</span>
                   <br />
@@ -340,8 +291,7 @@ const Home = () => {
           </div>
           {showEpisodesRightArrow && (
             <button
-              style={{ marginBottom: "15px" }}
-              className="scroll-arrow right-arrow"
+              className="scroll-arrow right-arrow arrow-vertical-margin"
               onClick={() => scroll(episodesScrollRef, 1)}
               aria-label="Scroll right"
             >
@@ -353,13 +303,12 @@ const Home = () => {
       {/* Locations Section */}
       <section className="content-section">
         <div className="section-header">
-          <h2 style={{ marginLeft: "15px" }}>Locations</h2>
+          <h2>Locations</h2>
         </div>
         <div className="scrollable-list-container">
           {showLocationsLeftArrow && (
             <button
-              style={{ marginBottom: "15px", transform: "rotate(180deg)" }}
-              className="scroll-arrow"
+              className="scroll-arrow left-arrow arrow-rotated arrow-vertical-margin"
               onClick={() => scroll(locationsScrollRef, -1)}
               aria-label="Scroll left"
             >
@@ -368,15 +317,7 @@ const Home = () => {
           )}
           <div className="scrollable-list" ref={locationsScrollRef}>
             {locationsData.map((location) => (
-              <div
-                style={{
-                  minWidth: "360px",
-                  minHeight: "96px",
-                  backgroundImage: `url(${smallCard})`,
-                  backgroundRepeat: "no-repeat",
-                }}
-                key={location.id}
-              >
+              <div className="small-card-item" key={location.id}>
                 <div className="card-container">
                   <span className="small-card-title">#{location.id}</span>
                   <br />
@@ -387,8 +328,7 @@ const Home = () => {
           </div>
           {showLocationsRightArrow && (
             <button
-              style={{ marginBottom: "15px" }}
-              className="scroll-arrow right-arrow"
+              className="scroll-arrow right-arrow arrow-vertical-margin"
               onClick={() => scroll(locationsScrollRef, 1)}
               aria-label="Scroll right"
             >

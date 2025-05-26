@@ -1,18 +1,18 @@
 @font-face {
   font-family: "main-title";
-  src: url("../../fonts/TTTravels-ExtraBold.ttf") format("woff2");
+  src: url("../../fonts/TTTravels-ExtraBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "title-diff";
-  src: url("../../fonts/TTTravels-ExtraBoldItalic.ttf") format("woff2");
+  src: url("../../fonts/TTTravels-ExtraBoldItalic.ttf") format("truetype");
 }
 @font-face {
   font-family: "location-id";
-  src: url("../../fonts/TTTravels-Medium.ttf") format("woff2");
+  src: url("../../fonts/TTTravels-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "Cast-title";
-  src: url('"../../fonts/TTTravels-DemiBold.ttf') format("truetype");
+  src: url("../../fonts/TTTravels-DemiBold.ttf") format("truetype");
 }
 
 body {
@@ -31,9 +31,12 @@ body {
   padding: 20px;
   margin: 0 auto;
   position: relative;
-  background: url("https://i.imgur.com/your-subtle-background-pattern.png")
-    repeat;
+
   background-color: #1e202d;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .hero-section {
@@ -52,7 +55,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   position: relative;
   z-index: 1;
 }
@@ -169,7 +171,6 @@ body {
 }
 .glow {
   z-index: 1;
-
   padding: 10px 20px;
 }
 .glow::before {
@@ -191,7 +192,6 @@ body {
   z-index: -1;
 }
 
-/* Content Sections (Cast, Episodes, Locations) */
 .content-section {
   max-width: 1770px;
   margin: 50px auto;
@@ -209,6 +209,7 @@ body {
   font-size: 1.8em;
   color: #fff;
   margin: 0;
+  margin-left: 15px;
 }
 
 .view-all-button {
@@ -267,17 +268,53 @@ body {
   margin: 0px -20px;
 }
 
-.card-container {
-  padding: 14px 24px;
+.scroll-arrow.arrow-rotated {
+  transform: rotate(180deg);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+.scroll-arrow.arrow-vertical-margin {
+  margin-bottom: 15px;
+}
+.cast-card-item {
+  flex-shrink: 0;
+  width: 290px;
+  background-image: url("../images/cast-card.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 10px;
+  backdrop-filter: blur(3.5px);
+  box-sizing: border-box;
+}
+
+.cast-card-image {
+  width: 258px;
+  height: 216px;
+  margin-left: 6px;
+  margin-top: 4px;
+  border-radius: 8px;
+}
+
+.small-card-item {
+  flex-shrink: 0;
+  min-width: 390px;
+  min-height: 96px;
+  background-image: url("../images/small-card.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.card-container {
+  max-width: 300px;
+  padding: 18px 0 0 24px;
 }
 
 .cast-card-p {
-  margin-left: 5px;
+  margin-left: 8px;
   font-family: poppins, sans-serif;
   font-size: 16px;
   color: #ffffff;
@@ -286,19 +323,18 @@ body {
   font-weight: 500;
 }
 
-/* Typography */
 .small-card-title {
   font-family: location-id;
   display: inline-block;
   margin-bottom: 2px;
-  font-size: 18px;
+
+  font-size: 16px;
 }
 .small-card-name {
   font-family: location-id;
   font-size: 24px;
 }
 
-/* Decorative Stars */
 .star {
   position: absolute;
 }
@@ -340,7 +376,6 @@ body {
   left: 0%;
   position: absolute;
 }
-/* Add more stars with different positions and animation delays */
 
 @keyframes twinkle {
   0%,
@@ -353,40 +388,176 @@ body {
     transform: scale(1.2);
   }
 }
-
-@media (max-width: 768px) {
+/* ---------------------------------------------------Responsive------------------------------------------------------------------------ */
+@media (max-width: 500px) {
+  .rick-and-morty-top-title > img {
+    width: 145px;
+    margin-bottom: 60px;
+  }
+  .hero-section {
+    padding: 0;
+  }
   .hero-content {
     flex-direction: column;
-    text-align: center;
-  }
-  .hero-actions {
-    flex-direction: column;
-  }
-  .hero-description {
-    text-align: center;
-    max-width: 90%;
-  }
-  .portal-gun-image {
-    display: none;
-  }
-  .title-diff {
-    font-size: 3rem;
-  }
-  .title-rick-morty {
-    font-size: 3.5rem;
-  }
-  .title-wiki {
-    font-size: 4rem;
-  }
-  .rick-head-logo {
-    width: 70px;
+    align-items: center;
+    text-align: start;
   }
 
+  .main-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: start;
+    font-size: 40px;
+    font-family: main-title;
+  }
+  .glow {
+    z-index: 1;
+    padding: 0px 0px;
+  }
+  .hero-actions {
+    flex-direction: column-reverse;
+    align-items: start;
+    gap: 10px;
+    width: 100%;
+    margin-left: calc(44% - 130px);
+  }
+  .hero-description {
+    text-align: start;
+    max-width: 260px;
+  }
+  .portal-gun-image {
+    right: -3%;
+    top: 75%;
+    width: 150px;
+    height: auto;
+    filter: none;
+  }
+  .title-diff {
+    font-size: 40px;
+    padding: 10px 0px;
+    margin: 0;
+  }
+  .title-diff:first-child::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 130%;
+    background: linear-gradient(
+      145deg,
+      rgba(120, 255, 200, 0.3),
+      rgba(60, 180, 255, 0.2)
+    );
+    border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%;
+    opacity: 0.2;
+    filter: blur(20px);
+    z-index: -1;
+  }
+  .title-rick-morty {
+    font-size: 40px;
+  }
+  .title-wiki {
+    font-size: 40px;
+  }
+  .rick-head-logo {
+    width: 69px;
+    height: 69px;
+    margin-bottom: -5px;
+  }
+  .watch-now-button {
+    padding: 10px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50px;
+    width: 126px;
+    gap: 8px;
+    box-shadow: none;
+  }
+  .view-all-button {
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10px;
+    width: 63px;
+    height: 22px;
+    margin-right: 0;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .content-section {
+    max-width: 1770px;
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  .section-header h2 {
+    font-size: 16px;
+
+    margin-left: 0;
+  }
   .scroll-arrow {
-    display: none;
-  } /* Hide arrows on mobile, rely on swipe */
+    min-width: 32px;
+    height: 32px;
+    margin-top: 15px;
+  }
   .scrollable-list {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 5px;
+    gap: 14px;
+  }
+  .cast-card-item {
+    flex-shrink: 0;
+    width: 135px;
+    height: 137px;
+    padding: 7.4px;
+  }
+  .cast-card-image {
+    width: 113px;
+    height: 105px;
+    margin: 10px 0 0 4px;
+    border-radius: 4px;
+  }
+  .cast-card-p {
+    margin-left: 5px;
+    max-width: 100px;
+    font-size: 10px;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .small-card-item {
+    min-width: 152px;
+    min-height: 32px;
+    display: flex;
+    justify-content: start;
+    padding-top: 12px;
+  }
+  .card-container {
+    max-width: 120px;
+    padding: 0 0 0 4px;
+  }
+
+  .small-card-title {
+    font-family: location-id;
+    font-size: 8px;
+  }
+  .small-card-name {
+    font-family: location-id;
+    font-size: 10px;
+    line-height: 0.8;
+    margin: 0;
+  }
+  .bubble {
+    top: 12.7%;
+    left: 2.4%;
+    z-index: 1;
+  }
+  .bubble > img {
+    width: 53px;
+  }
+  .bar {
+    display: none;
   }
 }

@@ -106,7 +106,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .casts-grid {
     grid-template-columns: 1fr;
     gap: 25px;
