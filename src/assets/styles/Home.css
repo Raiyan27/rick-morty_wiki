@@ -14,6 +14,10 @@
   font-family: "Cast-title";
   src: url("../../fonts/TTTravels-DemiBold.ttf") format("truetype");
 }
+@font-face {
+  font-family: "section-title";
+  src: url("../../fonts/TTTravels-Light.ttf") format("truetype");
+}
 
 body {
   margin: 0;
@@ -131,6 +135,7 @@ body {
 }
 
 .watch-now-button {
+  font-family: "Cast-title", sans-serif;
   background: linear-gradient(90deg, #9dfe00, #14d9e5);
   color: white;
   border: none;
@@ -142,7 +147,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 5px 15px rgba(151, 245, 40, 0.4);
+
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -152,6 +157,7 @@ body {
 }
 
 .hero-description {
+  font-family: "Cast-title", sans-serif;
   font-size: 14px;
   color: #14d9e5;
   max-width: 360px;
@@ -206,7 +212,8 @@ body {
 }
 
 .section-header h2 {
-  font-size: 1.8em;
+  font-family: "section-title", sans-serif;
+  font-size: 24px;
   color: #fff;
   margin: 0;
   margin-left: 15px;
