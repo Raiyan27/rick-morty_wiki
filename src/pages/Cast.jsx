@@ -10,6 +10,8 @@ import speciesCard from "../assets/images/cast-profile/species-card.png";
 import originCard from "../assets/images/cast-profile/origin-card.png";
 import episodesCard from "../assets/images/cast-profile/episodes-card.png";
 import locationCard from "../assets/images/cast-profile/location-card.png";
+import smallBackgroundImage from "../assets/images/small-bg.png";
+import separator from "../assets/images/seperator.png";
 
 const Cast = () => {
   const { id } = useParams();
@@ -28,35 +30,23 @@ const Cast = () => {
     };
     fetchCast();
   }, [id]);
-  console.log(castData);
-  return (
-    <div
-      style={{
-        backgroundImage: `
-      
-        url(${bg})
-      `,
 
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        zIndex: "",
-        minHeight: "100vh",
-      }}
-      className="home-container"
-    >
+  const bigBg = { backgroundImage: `url(${bg})` };
+  const smallBg = { backgroundImage: `url(${smallBackgroundImage})` };
+  const style = window.innerWidth > 500 ? bigBg : smallBg;
+  return (
+    <div style={style} className="home-container">
       <header>
-        <div style={{ textAlign: "center", marginBottom: "80px" }}>
+        <div className="header-logo-container">
           <img src={logo} alt="" />
         </div>
       </header>
       <main>
-        <div>
+        <div className="main">
           <h1>{castData.name}</h1>
           <div
             style={{
               backgroundImage: `url(${castProfileCard})`,
-              backgroundRepeat: "no-repeat",
             }}
             className="profile-card"
           >
@@ -64,122 +54,80 @@ const Cast = () => {
           </div>
         </div>
         <div>
-          <div
-            id="cast-status"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "800px",
-              height: "175px",
-              gap: "36px",
-              marginBottom: "36px",
-            }}
-          >
+          <div id="cast-status">
             <div
+              className="info-card-item"
               style={{
                 backgroundImage: `url(${statusCard})`,
-                backgroundRepeat: "no-repeat",
-                minHeight: "174px",
-                minWidth: "245px",
               }}
             >
-              <div style={{ padding: "60px 0px 0px 40px" }}>
+              <div className="info-card-content">
                 <h3>Status</h3>
                 <h6>{castData.status}</h6>
               </div>
             </div>
             <div
+              className="info-card-item"
               style={{
                 backgroundImage: `url(${speciesCard})`,
-                backgroundRepeat: "no-repeat",
-                minHeight: "174px",
-                minWidth: "245px",
               }}
             >
-              <div style={{ padding: "60px 0px 0px 40px" }}>
+              <div className="info-card-content">
                 <h3>Species</h3>
                 <h6>{castData.species}</h6>
               </div>
             </div>
             <div
+              className="info-card-item"
               style={{
                 backgroundImage: `url(${genderCard})`,
-                backgroundRepeat: "no-repeat",
-                minHeight: "174px",
-                minWidth: "245px",
               }}
             >
-              <div style={{ padding: "60px 0px 0px 40px" }}>
+              <div className="info-card-content">
                 <h3>Gender</h3>
                 <h6>{castData.gender}</h6>
               </div>
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "36px",
-            }}
-          >
+          <div className="details-column">
             <div
+              className="large-info-card"
               style={{
                 backgroundImage: `url(${originCard})`,
-                backgroundRepeat: "no-repeat",
-                minWidth: "800px",
-                minHeight: "174px",
               }}
             >
-              <div style={{ padding: "60px 0px 0px 40px" }}>
+              <div className="info-card-content">
                 <h3>Origin</h3>
                 <h6>{castData?.origin?.name}</h6>
               </div>
             </div>
             <div
+              className="large-info-card"
               style={{
                 backgroundImage: `url(${locationCard})`,
-                backgroundRepeat: "no-repeat",
-                minWidth: "800px",
-                minHeight: "174px",
               }}
             >
-              <div style={{ padding: "60px 0px 0px 40px" }}>
+              <div className="info-card-content">
                 <h3>Last Known Location</h3>
                 <h6>{castData?.location?.name}</h6>
               </div>
             </div>
             <div
+              className="episodes-card-container"
               style={{
                 backgroundImage: `url(${episodesCard})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                minWidth: "800px",
-                minHeight: "417px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
               }}
             >
-              <div
-                style={{
-                  padding: "120px 0px 0px 40px",
-                  overflowY: "auto",
-                  maxHeight: "240px",
-                }}
-              >
-                <ul
-                  style={{
-                    padding: 0,
-                    wordWrap: "break-word",
-                    overflowWrap: "break-word",
-                  }}
-                >
+              <div className="episodes-card-content">
+                <ul className="episodes-list-ul">
                   {castData.episode?.map((episode) => (
-                    <li key={episode} style={{ marginBottom: "4px" }}>
+                    <li key={episode}>
                       <h6 className="eps-list">{episode}</h6>
+                      {/* <h6 className="eps-list">
+                        {episode.length > 15
+                          ? episode.substring(0, 20) + "..."
+                          : episode}
+                      </h6> */}
                     </li>
                   ))}
                 </ul>
@@ -188,6 +136,9 @@ const Cast = () => {
           </div>
         </div>
       </main>
+      <div className="star separator">
+        <img src={separator} alt="" />
+      </div>
     </div>
   );
 };

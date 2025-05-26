@@ -2,6 +2,12 @@
   font-family: "eps-list";
   src: url('"../../fonts/TTTravels-DemiBold.ttf') format("truetype");
 }
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 main {
   max-width: 1700px;
   margin: 0 auto;
@@ -10,9 +16,14 @@ main {
   justify-content: center;
   align-items: center;
 }
-
+h1 {
+  font-family: "eps-list", sans-serif;
+  text-align: center;
+  color: #14d9e5;
+}
 .profile-card {
   padding: 50px;
+  background-repeat: no-repeat;
 }
 
 .profile-card > img {
@@ -29,9 +40,187 @@ h6 {
   margin: 0px;
 }
 
-@media (max-width: 700px) {
+.home-container {
+  /* background-image: url("../images/cast-bg.png"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.header-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+#cast-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 175px;
+  gap: 36px;
+  margin-bottom: 36px;
+}
+
+.info-card-item {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+
+  height: 174px;
+  width: 245px;
+}
+
+.info-card-content {
+  padding: 60px 0px 0px 40px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.large-info-card {
+  background-repeat: no-repeat;
+  min-width: 800px;
+  min-height: 174px;
+}
+
+.episodes-card-container {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 800px;
+  min-height: 417px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.episodes-card-content {
+  padding: 120px 0px 0px 40px;
+  overflow-y: auto;
+
+  max-height: 240px;
+}
+
+.episodes-list-ul {
+  padding: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.episodes-list-ul li {
+  margin-bottom: 4px;
+}
+
+h6.eps-list {
+  font-family: "eps-list", sans-serif;
+}
+.separator {
+  top: 46%;
+  right: 60%;
+}
+/* ------------------------------------------------------------------------------------------------------------------------ */
+@media (max-width: 500px) {
+  .home-container {
+    /* background-image: url("../images/small-bg.png"); */
+    min-height: 50vh;
+  }
+  .header-logo-container > img {
+    width: 158px;
+  }
   main {
     flex-direction: column;
-    gap: 40px;
+    gap: 0px;
+  }
+  #cast-status {
+    width: 348px;
+    height: 76px;
+    margin: 15px 0;
+    gap: 15px;
+  }
+
+  .profile-card {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    box-sizing: border-box;
+    width: 240px;
+    height: 240px;
+    padding: 7.4px;
+  }
+  .profile-card > img {
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+  }
+  .info-card-item {
+    background-size: contain;
+    height: 76px;
+    width: 105px;
+  }
+  .info-card-item:first-child {
+    background-size: cover;
+    height: 78px;
+    margin-top: 4px;
+    width: 106px;
+  }
+  .info-card-content {
+    padding: 33px 0 0 10px;
+  }
+  .details-column {
+    gap: 15px;
+  }
+  h3 {
+    margin: 0;
+    font-size: 12px;
+  }
+  h6 {
+    font-size: 20px;
+    margin-top: 2px;
+  }
+  .large-info-card {
+    background-size: contain;
+    min-width: 348px;
+    min-height: 76px;
+  }
+  .episodes-card-container {
+    background-size: contain;
+    min-width: 348px;
+  }
+  .episodes-card-content {
+    padding-top: 40px;
+    overflow-x: auto;
+    max-width: 280px;
+    max-height: 140px;
+  }
+  .separator {
+    display: none;
+  }
+}
+@media (max-width: 1400px) {
+  .separator {
+    display: none;
+  }
+}
+@media (max-width: 1500px) {
+  .separator {
+    top: 46%;
+    right: 63%;
+  }
+}
+@media (max-width: 1700px) {
+  .separator {
+    top: 46%;
+    right: 62.9%;
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/styles/Home.css";
 import backgroundImage from "../assets/images/bg.png";
+import smallBackgroundImage from "../assets/images/small-bg.png";
 import portalGun from "../assets/images/gun.png";
 import ricksHead from "../assets/images/portal.png";
 import logo from "../assets/images/logo.png";
@@ -157,6 +158,10 @@ const Home = () => {
       });
     }
   };
+  const goTo = () => {
+    window.location.href =
+      "https://www.youtube.com/watch?v=KQ9Cgdsa9tc&feature=youtu.be";
+  };
 
   const updateArrowVisibility = (scrollRef, setShowLeft, setShowRight) => {
     if (scrollRef.current) {
@@ -174,12 +179,11 @@ const Home = () => {
       setShowRight(false);
     }
   };
-
+  const bigBg = { backgroundImage: `url(${backgroundImage})` };
+  const smallBg = { backgroundImage: `url(${smallBackgroundImage})` };
+  const style = window.innerWidth > 500 ? bigBg : smallBg;
   return (
-    <div
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      className="home-container"
-    >
+    <div style={style} className="home-container">
       {/* Hero Section */}
       <header className="hero-section">
         <div className="rick-and-morty-top-title">
@@ -207,7 +211,7 @@ const Home = () => {
           </div>
           <div className="hero-actions">
             <button className="watch-now-button">
-              <img src={play} alt="" /> Watch Now
+              <img onClick={goTo} src={play} alt="" /> Watch Now
             </button>
             <p className="hero-description">
               Brilliant but boozy scientist Rick hijacks his fretful teenage

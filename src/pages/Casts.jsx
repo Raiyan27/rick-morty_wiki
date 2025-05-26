@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import bg from "../assets/images/bg-cast.png";
+
 import logo from "../assets/images/logo.png";
 import castCard from "../assets/images/cast-card.png";
 import "../assets/styles/casts.css";
@@ -31,12 +31,7 @@ const Casts = () => {
   };
 
   return (
-    <div
-      className="casts-page-container"
-      style={{
-        backgroundImage: `url(${bg})`,
-      }}
-    >
+    <div className="casts-page-container">
       <header className="casts-header">
         <div className="casts-logo-container">
           <img src={logo} alt="Rick and Morty Logo" className="casts-logo" />
